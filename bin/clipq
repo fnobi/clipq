@@ -3,6 +3,7 @@
 
 # libをload pathに追加しておく
 $: << File.dirname(__FILE__) + '/../lib/'
+$: << File.dirname(__FILE__) + '/../lib/clipq/lib'
 
 require 'open-uri'
 require 'clipsearch'
