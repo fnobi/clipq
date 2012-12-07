@@ -1,0 +1,20 @@
+#!/usr/bin/env ruby
+# -*- coding: utf-8 -*-
+
+# libをload pathに追加しておく
+$: << File.dirname(__FILE__) + '/../lib/'
+
+require 'open-uri'
+require 'clipsearch'
+
+# 第一引数を検索キーワードにする
+keyword = ARGV.shift
+
+# キーワードがないなら終了
+if !keyword
+  puts('Please input keyword.')
+  exit
+end
+
+# 検索結果出力
+puts clipsearch(keyword)
