@@ -5,11 +5,22 @@
 $: << File.dirname(__FILE__) + '/../lib/'
 $: << File.dirname(__FILE__) + '/../lib/clipq/lib'
 
-require 'open-uri'
 require 'clipsearch'
 
-# 第一引数を検索キーワードにする
-keyword = ARGV.shift
+# 引数を解釈
+keyword = nil
+count = nil
+isCount = false
+ARGV.each do |arg|
+  if isCount
+    count = arg.to_i
+    isCount = false
+  elsif arg == '--count' || arg == '-c'
+    isCount = true
+  else
+    keyword = arg
+  end
+end
 
 # キーワードがないなら終了
 if !keyword
@@ -18,4 +29,4 @@ if !keyword
 end
 
 # 検索結果出力
-puts clipsearch(keyword)
+puts clipsearch(keyword, count)
