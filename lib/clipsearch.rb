@@ -4,10 +4,21 @@ require 'uri'
 require 'parse_clipsearch'
 require 'format_search_result'
 
+# SFC CLIPの記事を検索する
 def clipsearch (keyword)
   keyword = URI.encode(keyword)
 
-  url = "http://sfcclip.net/search?keyword=#{keyword}&titlesearch=on&leadsearch=on&bodysearch=on&date_st=&date_en=&category=&tag="
+  url = [
+    "http://sfcclip.net/search?",
+    "keyword=#{keyword}&",
+    "titlesearch=on&",
+    "leadsearch=on&",
+    "bodysearch=on&",
+    "date_st=&",
+    "date_en=&",
+    "category=&",
+    "tag="
+  ].join('')
 
   html = open(url).read
   articles = parse_clipsearch(html)

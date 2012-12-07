@@ -4,12 +4,18 @@
 def format_search_result (articles)
   texts = []
 
+  if articles.empty?
+    return 'no matching articles.'
+  end
+
   articles.each do |article|
     texts.push([
-      "▼ #{article[:title]} (#{article[:date]})",
-      " - #{article[:category]}",
-      " - #{article[:url]}"
+      "▼ #{article[:title]}",
+      " - #{article[:url]}",
+      " - 掲載日: #{article[:date]}",
+      " - カテゴリ: #{article[:category]}"
     ].join("\n"))
   end
+
   return texts.join("\n" * 2)
 end
